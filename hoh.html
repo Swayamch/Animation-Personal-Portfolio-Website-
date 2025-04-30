@@ -16,16 +16,16 @@
         }
 
         :root {
-            --primary: #9C7A57;
-            --primary-light: #BEA78F;
-            --secondary: #728F7B;
-            --secondary-light: #A6BDA4;
-            --text-dark: #2A2A2A;
-            --text-light: #6E6E6E;
-            --background: #F6F4F0;
-            --section-bg: #FFFFFF;
-            --border-color: #E5E0DA;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --primary: #6366f1; /* Indigo-600 */
+            --primary-light: #a5b4fc; /* Indigo-200 */
+            --secondary: #a78bfa; /* Purple-400 */
+            --secondary-light: #ddd6fe; /* Purple-200 */
+            --text-dark: #4a5568; /* Gray-700 */
+            --text-light: #6b7280; /* Gray-500 */
+            --background: #f8f5f2; /* Light background */
+            --section-bg: #fff;
+            --border-color: #e5e7eb; /* Gray-200 */
+            --gradient: linear-gradient(135deg, #7f9cf5 0%, #a78bfa 100%);
         }
 
         html, body {
@@ -661,7 +661,7 @@
 
             .services-content h2 {
                 font-size: 36px;
-            }
+        }
 
             .slide-info--text[data-title] {
                 font-size: 28px;
@@ -739,7 +739,7 @@
         <div class="logo">Holistic Booking</div>
         <ul class="menu">
             <li><a href="index.html">Home</a></li>
-            <li><a href="landing.html#about">About</a></li>
+           
             <li><a href="hoh.html">Services</a></li>
             <li><a href="landing.html#contact">Contact</a></li>
         </ul>
@@ -748,7 +748,7 @@
 
     <div class="content-wrapper">
         <div class="hero">
-            <h1>Our Holistic Services</h1>
+            <h1>Our House of Healing Services</h1>
             <p class="subhead">Discover our comprehensive range of wellness offerings designed to nurture your physical, mental, and spiritual well-being.</p>
         </div>
 
@@ -781,7 +781,7 @@
                                     <div data-description class="slide-info--text">
                                         Our acupuncture therapy uses fine needles to stimulate specific points on the body, promoting natural healing and pain relief. This ancient practice helps restore balance and energy flow throughout your body.
                                     </div>
-                                    <a href="#" class="service-btn">Learn More</a>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -802,7 +802,7 @@
                                     <div data-description class="slide-info--text">
                                         Our therapeutic massage techniques combine Swedish, deep tissue, and myofascial release to reduce tension, improve circulation, and promote overall relaxation and well-being.
                                     </div>
-                                    <a href="#" class="service-btn">Learn More</a>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -823,7 +823,7 @@
                                     <div data-description class="slide-info--text">
                                         Experience deep relaxation through our sound healing sessions. Using singing bowls, gongs, and tuning forks, we create harmonic vibrations that restore balance to your body's energy centers.
                                     </div>
-                                    <a href="#" class="service-btn">Learn More</a>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -871,7 +871,7 @@
 
             // Hide loader
             setTimeout(() => {
-                loader.style.opacity = 0;
+            loader.style.opacity = 0;
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 500);

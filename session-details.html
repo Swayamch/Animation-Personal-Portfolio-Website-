@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a78bfa;
+            --accent: #f472b6;
+            --bg: #f8f5f2;
+            --white: #fff;
+            --gray: #4a5568;
+            --gray-light: #e5e7eb;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            color: var(--gray);
+            line-height: 1.6;
+            font-weight: 400;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .stepper {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            width: 320px;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.08);
+            border: 1px solid var(--gray-light);
+        }
+        .stepper .back-arrow {
+            font-size: 1.3rem;
+            color: var(--gray);
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .stepper .back-arrow:hover {
+            color: var(--primary);
+        }
+        .stepper .session-summary {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--gray-light);
+        }
+        .stepper .session-summary img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .stepper .session-summary .summary-text {
+            font-size: 1rem;
+            color: var(--gray);
+            letter-spacing: 0.2px;
+        }
+        .stepper .session-summary .summary-text b {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .stepper .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .stepper .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            position: relative;
+        }
+        .stepper .step .icon {
+            background: var(--gradient);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--white);
+        }
+        .stepper .step .step-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .stepper .step:not(:last-child)::after {
+            content: '';
+            display: block;
+            width: 2px;
+            height: 40px;
+            background: var(--gradient);
+            position: absolute;
+            left: 19px;
+            top: 45px;
+            opacity: 0.3;
+        }
+        .stepper .step .step-label.inactive {
+            color: var(--gray);
+            font-weight: 400;
+        }
+        /* Center column */
+        .mode-session {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            flex: 1.2;
+            min-width: 320px;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.08);
+            border: 1px solid var(--gray-light);
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        .mode-session h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 0.3px;
+        }
+        .mode-btn {
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            padding: 1.2rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        .mode-btn i {
+            font-size: 1.5rem;
+        }
+        .duration-group {
+            display: flex;
+            gap: 1.2rem;
+        }
+        .duration-btn {
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            padding: 0.8rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--white);
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+        .duration-btn.selected {
+            background: var(--gradient);
+            color: var(--white);
+            border-color: transparent;
+        }
+        .duration-btn:hover {
+            border-color: var(--primary);
+        }
+        .duration-btn.selected:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+        }
+        .session-price {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--gray);
+            letter-spacing: 0.2px;
+        }
+        .session-price b {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        /* Right column */
+        .date-time {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            flex: 1.5;
+            min-width: 340px;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.08);
+            border: 1px solid var(--gray-light);
+        }
+        .date-time h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 0.3px;
+        }
+        .date-tabs {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        .date-tab {
+            background: var(--white);
+            color: var(--gray);
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        .date-tab.selected {
+            background: var(--gradient);
+            color: var(--white);
+            border-color: transparent;
+        }
+        .date-tab:hover {
+            border-color: var(--primary);
+        }
+        .date-tab.selected:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+        }
+        .slots-group {
+            margin-bottom: 1.5rem;
+        }
+        .slots-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .slots {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .slot-btn {
+            background: var(--white);
+            color: var(--gray);
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+        .slot-btn.selected {
+            background: var(--gradient);
+            color: var(--white);
+            border-color: transparent;
+        }
+        .slot-btn:hover {
+            border-color: var(--primary);
+        }
+        .slot-btn.selected:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+        }
+        .continue-btn {
+            position: fixed;
+            right: 3rem;
+            bottom: 2rem;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 24px;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+        }
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 1rem;
+            }
+            .continue-btn {
+                right: 1rem;
+            }
+            .date-tabs {
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Stepper -->
+        <div class="stepper">
+            <div class="back-arrow"><i class="fas fa-arrow-left"></i></div>
+            <div class="session-summary">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mayank Rajput">
+                <div>
+                    <div class="summary-text">Couple Therapy session with <b>Mayank Rajput</b></div>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div>
+                        <div class="step-label">Choose session details</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="icon"><i class="fas fa-user"></i></div>
+                    <div>
+                        <div class="step-label inactive">Enter your details</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="icon"><i class="fas fa-clipboard-check"></i></div>
+                    <div>
+                        <div class="step-label inactive">Complete your booking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mode of Session -->
+        <div class="mode-session">
+            <h3>Mode of Session</h3>
+            <button class="mode-btn"><i class="fas fa-video"></i> Video call</button>
+            <h3>Session duration</h3>
+            <div class="duration-group">
+                <button class="duration-btn selected">90 min</button>
+                <button class="duration-btn">60 min</button>
+            </div>
+            <div class="session-price">Session Price: <b>₹2800</b></div>
+        </div>
+        <!-- Date and Time -->
+        <div class="date-time">
+            <h3>Date and Time</h3>
+            <div class="date-tabs">
+                <button class="date-tab selected">Today<br><span style="font-size:0.9em;font-weight:400;">4 slots</span></button>
+                <button class="date-tab">02 May<br><span style="font-size:0.9em;font-weight:400;">10 slots</span></button>
+                <button class="date-tab">03 May<br><span style="font-size:0.9em;font-weight:400;">10 slots</span></button>
+                <button class="date-tab">04 May<br><span style="font-size:0.9em;font-weight:400;">No slots</span></button>
+            </div>
+            <div class="slots-group">
+                <div class="slots-label">Morning</div>
+                <div class="slots">
+                    <button class="slot-btn">10:00 AM</button>
+                    <button class="slot-btn">10:30 AM</button>
+                </div>
+            </div>
+            <div class="slots-group">
+                <div class="slots-label">Evening</div>
+                <div class="slots">
+                    <button class="slot-btn">5:00 PM</button>
+                    <button class="slot-btn">5:30 PM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="continue-btn">CONTINUE</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Duration buttons
+            const durationButtons = document.querySelectorAll('.duration-btn');
+            durationButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    durationButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    updatePrice(button.textContent);
+                });
+            });
+
+            // Date tabs
+            const dateTabs = document.querySelectorAll('.date-tab');
+            dateTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    dateTabs.forEach(t => t.classList.remove('selected'));
+                    tab.classList.add('selected');
+                });
+            });
+
+            // Time slots
+            const slotButtons = document.querySelectorAll('.slot-btn');
+            slotButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    slotButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                });
+            });
+
+            // Back arrow
+            const backArrow = document.querySelector('.back-arrow');
+            backArrow.addEventListener('click', () => {
+                window.history.back();
+            });
+
+            // Continue button
+            const continueBtn = document.querySelector('.continue-btn');
+            continueBtn.addEventListener('click', () => {
+                const selectedDuration = document.querySelector('.duration-btn.selected').textContent;
+                const selectedDate = document.querySelector('.date-tab.selected').textContent.split('\n')[0];
+                const selectedTime = document.querySelector('.slot-btn.selected')?.textContent || 'No time selected';
+                
+                if (!selectedTime) {
+                    alert('Please select a time slot');
+                    return;
+                }
+
+                // Here you would typically redirect to the next page or handle the booking
+                console.log('Booking details:', {
+                    duration: selectedDuration,
+                    date: selectedDate,
+                    time: selectedTime
+                });
+            });
+
+            // Price update function
+            function updatePrice(duration) {
+                const priceElement = document.querySelector('.session-price b');
+                if (duration === '90 min') {
+                    priceElement.textContent = '₹2800';
+                } else if (duration === '60 min') {
+                    priceElement.textContent = '₹2000';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
