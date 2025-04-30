@@ -75,20 +75,20 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             font-weight: 600;
-            color: var(--primary);
+            color: black;
             letter-spacing: 0.5px;
         }
 
-        .menu {
+        .nav-links {
             display: flex;
             gap: 2.5rem;
         }
 
-        .menu li {
+        .nav-links li {
             list-style: none;
         }
 
-        .menu a {
+        .nav-links a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
@@ -99,7 +99,7 @@
             text-transform: uppercase;
         }
 
-        .menu a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -110,11 +110,11 @@
             transition: width 0.3s ease;
         }
 
-        .menu a:hover {
+        .nav-links a:hover {
             color: var(--primary);
         }
 
-        .menu a:hover::after {
+        .nav-links a:hover::after {
             width: 100%;
         }
 
@@ -736,14 +736,13 @@
     </div>
 
     <nav class="navbar">
-        <div class="logo">Holistic Booking</div>
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-           
-            <li><a href="hoh.html">Services</a></li>
-            <li><a href="landing.html#contact">Contact</a></li>
-        </ul>
-        <a href="https://instagram.com" class="btn" target="_blank">Instagram</a>
+        <div class="logo">HOLISTIC BOOKING</div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="landing.html">ABOUT</a>
+            <a href="hoh.html">SERVICES</a>
+            <a href="#contact">CONTACT</a>
+        </div>
     </nav>
 
     <div class="content-wrapper">
