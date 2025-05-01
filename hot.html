@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        /* Reusing the same styles as hoh.html */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #a5b4fc;
+            --secondary: #a78bfa;
+            --secondary-light: #ddd6fe;
+            --text-dark: #4a5568;
+            --text-light: #6b7280;
+            --background: #f8f5f2;
+            --section-bg: #fff;
+            --border-color: #e5e7eb;
+            --gradient: linear-gradient(135deg, #7f9cf5 0%, #a78bfa 100%);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.5;
+            font-weight: 400;
+            font-style: normal;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(156, 122, 87, 0.07) 0%, transparent 50%),
+                radial-gradient(circle at 85% 80%, rgba(114, 143, 123, 0.07) 0%, transparent 50%),
+                url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M30 5L55 30L30 55L5 30L30 5Z" fill="none" stroke="%23E5E0DA" stroke-width="0.5" opacity="0.3"/></svg>');
+            background-size: cover, cover, 60px 60px;
+            background-attachment: fixed;
+        }
+
+        /* Reusing all the styles from hoh.html */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 0 max(22px, env(safe-area-inset-right)) 0 max(22px, env(safe-area-inset-left));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: black;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .content-wrapper {
+            padding-top: 70px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero {
+            min-height: 85vh;
+            padding: 7rem 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--section-bg);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background-image: 
+                linear-gradient(120deg, rgba(156, 122, 87, 0.03), rgba(114, 143, 123, 0.03)),
+                url('data:image/svg+xml;utf8,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="1.5" fill="%23E5E0DA" opacity="0.5"/></svg>');
+            background-size: cover, 30px 30px;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            line-height: 1.1;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero .subhead {
+            font-size: 20px;
+            line-height: 1.5;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            margin-bottom: 24px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .services-section {
+            padding: 5rem 0;
+            background: var(--section-bg);
+            position: relative;
+            overflow: hidden;
+            background-image: 
+                linear-gradient(135deg, rgba(156, 122, 87, 0.03), rgba(114, 143, 123, 0.03)),
+                url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="40" height="40" fill="none" stroke="%23E5E0DA" stroke-width="0.5" opacity="0.2"/></svg>');
+            background-size: cover, 40px 40px;
+        }
+
+        .services-content {
+            max-width: 980px;
+            margin: 0 auto 70px;
+            text-align: center;
+            padding: 0 22px;
+        }
+
+        .services-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .services-content h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .services-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .slider {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 50px;
+        }
+
+        .slider--btn {
+            --size: 50px;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: white;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .slider--btn:hover {
+            background: var(--primary);
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .slider--btn i {
+            font-size: 20px;
+            color: white;
+        }
+
+        .slider--btn__prev {
+            left: 15px;
+        }
+
+        .slider--btn__next {
+            right: 15px;
+        }
+
+        .slides__wrapper {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 0;
+            height: 650px;
+        }
+
+        .slides {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+            height: 100%;
+            width: 100%;
+        }
+
+        .slide {
+            padding: 0 15px;
+            flex: 0 0 100%;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: scale(0.85);
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 800px;
+            pointer-events: none;
+        }
+
+        .slide[data-current] {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 5;
+            pointer-events: all;
+        }
+
+        .slide[data-previous], .slide[data-next] {
+            opacity: 0.4;
+            transform: scale(0.85);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .slide[data-previous] {
+            transform: translateX(-65%) scale(0.85);
+            filter: blur(1px);
+        }
+
+        .slide[data-next] {
+            transform: translateX(65%) scale(0.85);
+            filter: blur(1px);
+        }
+
+        .slide__inner {
+            background: var(--section-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(229, 224, 218, 0.5);
+        }
+
+        .slide[data-current] .slide__inner:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .slide--image__wrapper {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide--image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .slide[data-current] .slide__inner:hover .slide--image {
+            transform: scale(1.05);
+        }
+
+        .slide-info--text__wrapper {
+            padding: 30px 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-info--text[data-title] {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            line-height: 1.2;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .slide-info--text[data-subtitle] {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .slide-info--text[data-description] {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .service-btn {
+            background: var(--gradient);
+            color: white;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 12px 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(156, 122, 87, 0.3);
+        }
+
+        .service-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(156, 122, 87, 0.4);
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            background-image: 
+                radial-gradient(circle at 30% 30%, rgba(156, 122, 87, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(114, 143, 123, 0.08) 0%, transparent 50%),
+                url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 5L35 20L20 35L5 20L20 5Z" fill="none" stroke="%23E5E0DA" stroke-width="0.5" opacity="0.5"/></svg>');
+            background-size: cover, cover, 40px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader__text {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .loader__text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            animation: loading 1.5s infinite ease-in-out;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 80px 22px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 980px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--gradient);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer-divider {
+            width: 80%;
+            max-width: 500px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                rgba(255, 255, 255, 0.3), 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            margin: 0 auto 30px;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .services-content h2 {
+                font-size: 36px;
+            }
+
+            .slide-info--text[data-title] {
+                font-size: 28px;
+            }
+
+            .slide-info--text__wrapper {
+                padding: 25px 30px;
+            }
+
+            .slides__wrapper {
+                height: 600px;
+            }
+
+            .slide[data-previous], .slide[data-next] {
+                display: none;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Specific styles for Travel services */
+        .slide--image[alt="Wellness Retreats"] {
+            filter: saturate(1.1) brightness(1.05);
+        }
+
+        .slide--image[alt="Adventure Tours"] {
+            filter: saturate(1.15) brightness(1.1);
+        }
+
+        .slide--image[alt="Cultural Immersion"] {
+            filter: saturate(1.05) brightness(1.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <span class="loader__text">Loading...</span>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">HOLISTIC BOOKING</div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="landing.html">ABOUT</a>
+            <a href="hoh.html">SERVICES</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="hero">
+            <h1>Our House of Travel Services</h1>
+            <p class="subhead">Embark on transformative journeys that combine adventure, wellness, and cultural immersion for a truly enriching travel experience.</p>
+        </div>
+
+        <section class="services-section">
+            <div class="services-content">
+                <h2>Travel Experiences</h2>
+                <p>Discover curated travel experiences that nourish your soul, challenge your perspectives, and create lasting memories through mindful exploration.</p>
+            </div>
+            
+            <div class="slider">
+                <button class="slider--btn slider--btn__prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="slides__wrapper">
+                    <div class="slides">
+                        <!-- Slide 1 -->
+                        <div class="slide" data-current>
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1820&q=80" alt="Wellness Retreats" />
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Wellness Retreats
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Rejuvenating Escapes
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Immerse yourself in transformative wellness retreats that combine yoga, meditation, and holistic healing in stunning natural settings around the world.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="slide" data-next>
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1820&q=80" alt="Adventure Tours" />
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Adventure Tours
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Mindful Exploration
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Experience carefully curated adventure tours that combine physical challenges with mindful practices, allowing you to connect deeply with nature and yourself.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="slide" data-previous>
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Cultural Immersion" />
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Cultural Immersion
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Authentic Experiences
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Dive deep into local traditions and customs through immersive cultural experiences that foster understanding, respect, and personal growth.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="slider--btn slider--btn__next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">Holistic Wellness</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="landing.html#about">About</a>
+                    <a href="hoh.html">Services</a>
+                    <a href="landing.html#contact">Contact</a>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+                <div class="footer-divider"></div>
+                <p class="copyright">© 2023 Holistic Wellness. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Reusing the same JavaScript from hoh.html
+        const lerp = (a, b, t) => a + (b - a) * t;
+
+        function init() {
+            const loader = document.querySelector(".loader");
+            const slides = [...document.querySelectorAll(".slide")];
+            const buttons = {
+                prev: document.querySelector(".slider--btn__prev"),
+                next: document.querySelector(".slider--btn__next")
+            };
+
+            setTimeout(() => {
+                loader.style.opacity = 0;
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 800);
+
+            buttons.prev.addEventListener("click", () => {
+                changeSlide(-1);
+            });
+            
+            buttons.next.addEventListener("click", () => {
+                changeSlide(1);
+            });
+
+            function changeSlide(direction) {
+                const current = document.querySelector(".slide[data-current]");
+                const previous = document.querySelector(".slide[data-previous]");
+                const next = document.querySelector(".slide[data-next]");
+
+                current.removeAttribute("data-current");
+                previous.removeAttribute("data-previous");
+                next.removeAttribute("data-next");
+
+                if (direction === 1) {
+                    current.setAttribute("data-previous", "");
+                    next.setAttribute("data-current", "");
+                    previous.setAttribute("data-next", "");
+                } else {
+                    current.setAttribute("data-next", "");
+                    previous.setAttribute("data-current", "");
+                    next.setAttribute("data-previous", "");
+                }
+
+                const allSlides = document.querySelectorAll('.slide');
+                allSlides.forEach(slide => {
+                    slide.style.transition = 'all 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            });
+
+            let autoplayInterval;
+            const startAutoplay = () => {
+                autoplayInterval = setInterval(() => {
+                    changeSlide(1);
+                }, 5000);
+            };
+
+            const stopAutoplay = () => {
+                clearInterval(autoplayInterval);
+            };
+
+            startAutoplay();
+
+            const slider = document.querySelector('.slider');
+            slider.addEventListener('mouseenter', stopAutoplay);
+            slider.addEventListener('mouseleave', startAutoplay);
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            const slidesWrapper = document.querySelector('.slides__wrapper');
+            
+            slidesWrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            slidesWrapper.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    changeSlide(1);
+                } else if (touchEndX > touchStartX + 50) {
+                    changeSlide(-1);
+                }
+            }
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html> 
