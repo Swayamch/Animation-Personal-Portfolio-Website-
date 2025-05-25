@@ -4,24 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holistic Healing - Your Path to Wellness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #a78bfa;
-            --accent: #f472b6;
-            --bg: #f8f5f2;
+            --primary: #D6C18E;
+            --secondary: #6B5004;
+            --accent: #252525;
+            --bg: #F9F4EC;
             --white: #fff;
-            --gray: #4a5568;
-            --gray-light: #e5e7eb;
+            --gray: #252525;
+            --gray-light: #D6C18E;
+        }
+        @font-face {
+            font-family: 'Fonseca';
+            src: url('Fonseca-Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
         }
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--bg);
-            color: var(--gray);
+            font-family: 'Fonseca', 'Montserrat', sans-serif;
+            background-color: #F9F4EC;
+            color: #252525;
             margin: 0;
             scroll-behavior: smooth;
         }
@@ -78,9 +85,9 @@
         }
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #f8f5f2 60%, #e0e7ff 100%);
+            background: linear-gradient(135deg, #F9F4EC 60%, #D6C18E 100%);
             padding: 6rem 0 4rem 0;
-            min-height: 80vh;
+            min-height: 72vh;
             display: flex;
             align-items: center;
         }
@@ -381,124 +388,175 @@
         }
         /* Footer */
         footer {
-            background: #312e81;
-            color: var(--white);
-            padding: 4rem 5vw 2rem 5vw;
-            text-align: center;
+            background-color: #252525; /* Dark background color */
+            color: #D6C18E;
+            padding: 60px 20px 30px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
         }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #D6C18E; /* Solid beige/gold border */
+        }
+
         .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+            justify-content: space-between; /* Distribute space between columns */
+            max-width: 1200px; /* Max width for the footer content */
+            margin: 0 auto 40px; /* Center content and add bottom margin */
+            position: relative;
+            z-index: 1;
         }
+
+        .footer-column {
+            flex: 1; /* Allow columns to grow and shrink */
+            min-width: 250px; /* Minimum width for columns */
+            margin: 0 15px 30px; /* Add margin around columns */
+        }
+
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 1.8rem; /* Slightly smaller font size for logo */
             font-weight: 600;
-            color: var(--white);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: none;
+            -webkit-background-clip: initial;
+            background-clip: initial;
+            color: #D6C18E;
+            display: inline-block;
+            margin-bottom: 15px; /* Adjust bottom margin */
         }
-        .footer-links {
-            display: flex;
-            gap: 3rem;
-            justify-content: center;
-            margin-bottom: 2rem;
+
+        .footer-column p {
+            font-size: 0.95rem; /* Adjust paragraph font size */
+            line-height: 1.6; /* Adjust line height */
+            color: #D6C18E;
+            margin-bottom: 15px; /* Add bottom margin to paragraphs */
         }
-        .footer-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 1.1rem;
+
+        .footer-column h3 {
+            font-size: 1.2rem; /* Adjust heading font size */
             font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 20px; /* Adjust bottom margin */
+            color: #D6C18E;
             position: relative;
         }
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        .footer-links a:hover::after {
-            width: 100%;
-        }
-        .footer-divider {
-            width: 80%;
-            max-width: 600px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1), transparent);
-            margin: 2.5rem auto 2rem auto;
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 2rem;
-        }
-        .footer-bottom p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
+
+        .footer-links-list {
+            list-style: none; /* Remove default list styling */
+            padding: 0;
             margin: 0;
         }
+
+        .footer-links-list li {
+            margin-bottom: 10px; /* Add space between list items */
+        }
+
+        .footer-links-list a {
+            color: #D6C18E;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+
+        .footer-links-list a:hover {
+            color: #fff;
+        }
+
         .social-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 15px; /* Adjust gap between social icons */
+            margin-top: 20px; /* Add top margin */
         }
+
         .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
+            width: 35px; /* Adjust social icon size */
+            height: 35px; /* Adjust social icon size */
+            background: none;
             border-radius: 50%;
-            color: var(--white);
+            color: #D6C18E;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+            border: none;
         }
+
         .social-link:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-3px);
+            background: #D6C18E;
+            color: #252525;
+            transform: translateY(-3px); /* Lift effect on hover */
         }
-        @media (max-width: 900px) {
-            nav {
-                height: auto;
-                padding: 1rem 2vw;
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px; /* Add top margin */
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1; /* Allow input to take up available space */
+            padding: 10px 15px; /* Adjust padding */
+            border: none; /* Remove border */
+            border-radius: 5px 0 0 5px; /* Rounded left corners */
+            font-size: 0.95rem;
+            background: #fff;
+            color: #252525;
+        }
+
+        .newsletter-form button {
+            padding: 10px 15px; /* Adjust padding */
+            background: linear-gradient(135deg, #D6C18E, #6B5004);
+            border: none; /* Remove border */
+            border-radius: 0 5px 5px 0; /* Rounded right corners */
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease; /* Smooth background transition */
+        }
+
+        .newsletter-form button:hover {
+            background: #6B5004;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: none;
+            font-size: 0.9rem;
+            color: #D6C18E;
+            position: relative;
+        }
+        .footer-bottom::before {
+            content: "";
+            display: block;
+            width: 70%;
+            height: 2px;
+            background: #D6C18E;
+            margin: 0 auto 18px auto;
+            border-radius: 2px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column; /* Stack columns vertically on smaller screens */
+                align-items: center; /* Center align items in the column */
             }
-            
-            .nav-links {
-                gap: 1.5rem;
+
+            .footer-column {
+                margin: 0 0 30px 0; /* Adjust margins for stacked columns */
+                text-align: center; /* Center align text in columns */
             }
-            
-            .nav-links a {
-                font-size: 1rem;
-            }
-            
-            .footer-links {
-                gap: 1.5rem;
-                flex-wrap: wrap;
-            }
-            
-            .footer-links a {
-                font-size: 1rem;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1.5rem;
+
+            .social-links {
+                justify-content: center; /* Center social icons */
             }
         }
         /* Add these styles before the media queries */
@@ -594,7 +652,10 @@
 </head>
 <body>
     <nav>
-        <div class="logo">Holistic Booking</div>
+        <div style="display: flex; align-items: center;">
+            <img src="image.png" alt="Holistic Booking Logo" style="height: 48px; width: auto; margin-right: 12px;">
+            <div class="logo">Holistic Booking</div>
+        </div>
         <div class="hamburger">
             <span></span>
             <span></span>
@@ -644,22 +705,35 @@
     
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">Holistic Booking</div>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="hoh.html">Services</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-divider"></div>
-            <div class="footer-bottom">
-                <p>Holistic Booking. All rights reserved.</p>
+            <div class="footer-column">
+                <div class="footer-logo">Holistic Booking</div>
+                <p>Empowering individuals on their journey to holistic wellness through mindful practices and personalized healing experiences.</p>
                 <div class="social-links">
                     <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="hoh.html">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to receive updates on new services and wellness tips.</p>
+                <form action="#" class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Holistic Booking. All rights reserved.</p>
         </div>
     </footer>
 
