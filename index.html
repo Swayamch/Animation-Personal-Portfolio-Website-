@@ -55,41 +55,65 @@
         }
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-size: 1.75rem;
+            font-weight: 600;
             color: #252525;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            background: linear-gradient(135deg, #252525 0%, #6B5004 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
+            align-items: center;
         }
         .nav-links a {
             color: #252525;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: color 0.2s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
             position: relative;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            padding: 0.5rem 0;
         }
         .nav-links a:hover {
             color: #D6C18E;
+            transform: translateY(-1px);
         }
         .nav-links a::after {
             content: '';
             position: absolute;
             left: 0;
-            bottom: -4px;
+            bottom: 0;
             width: 0;
             height: 2px;
-            background: #D6C18E;
-            transition: width 0.3s;
+            background: linear-gradient(135deg, #D6C18E 0%, #6B5004 100%);
+            transition: width 0.3s ease;
         }
         .nav-links a:hover::after {
             width: 100%;
+        }
+        .nav-links .booking-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #D6C18E 0%, #6B5004 100%);
+            color: white;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .nav-links .booking-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(107, 80, 4, 0.2);
         }
         .hamburger {
             display: none;
@@ -101,46 +125,21 @@
         .hamburger span {
             display: block;
             width: 25px;
-            height: 3px;
-            background: var(--gray);
-            margin: 5px 0;
+            height: 2px;
+            background: #252525;
+            margin: 6px 0;
             transition: all 0.3s ease;
-            border-radius: 3px;
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
+            border-radius: 2px;
         }
         @media (max-width: 900px) {
-            .hamburger {
-                display: block;
-                margin-right: 10px;
-            }
             .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: 0.3s ease;
                 gap: 2rem;
-                z-index: 999;
-            }
-            .nav-links.active {
-                left: 0;
             }
             .nav-links a {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+            }
+            .logo {
+                font-size: 1.5rem;
             }
         }
     </style>
