@@ -411,6 +411,22 @@
             flex-direction: column;
         }
 
+        .progress-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(214, 193, 142, 0.2);
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar__fill {
+            width: 0%;
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.1s linear;
+        }
+
         .slide-info--text[data-title] {
             font-family: 'Cormorant Garamond', serif;
             font-size: 32px;
@@ -718,7 +734,8 @@
     <nav class="navbar">
         <div style="display: flex; align-items: center;">
             <img src="image.png" alt="Holistic Booking Logo" style="height: 48px; width: auto; margin-right: 12px;">
-            <div class="logo">HOLISTIC BOOKING</div>
+            <a href="index.html" class="logo">HOLISTIC BOOKING</a>
+            
         </div>
         <div class="hamburger">
             <span></span>
@@ -758,6 +775,9 @@
                                 <div class="slide--image__wrapper">
                                     <img class="slide--image" src="https://cdn.pixabay.com/photo/2014/12/03/12/21/monk-555391_1280.jpg" alt="Vedic Meditation" />
                                 </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
                                         Vedic Meditation
@@ -779,6 +799,9 @@
                                 <div class="slide--image__wrapper">
                                     <img class="slide--image" src="https://cdn.pixabay.com/photo/2023/08/29/18/43/ai-generated-8221963_1280.png" alt="Ayurvedic Consultation" />
                                 </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
                                         Ayurvedic Consultation
@@ -799,6 +822,9 @@
                             <div class="slide__inner">
                                 <div class="slide--image__wrapper">
                                     <img class="slide--image" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Yoga Therapy" />
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
                                 </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
@@ -884,30 +910,76 @@
                 changeSlide(1);
             });
 
+            // Auto-play (optional)
+            let autoplayInterval;
+            let progressInterval;
+            const SLIDE_DURATION = 5000; // 5 seconds in milliseconds
+
+            const startAutoplay = () => {
+                // Clear any existing intervals first
+                if (autoplayInterval) {
+                    clearInterval(autoplayInterval);
+                }
+                if (progressInterval) {
+                    clearInterval(progressInterval);
+                }
+
+                // Start the slide transition interval
+                autoplayInterval = setInterval(() => {
+                    changeSlide(1);
+                }, SLIDE_DURATION);
+
+                // Start the progress bar animation
+                const progressBar = document.querySelector('.slide[data-current] .progress-bar__fill');
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                    let progress = 0;
+                    progressInterval = setInterval(() => {
+                        progress += 1;
+                        progressBar.style.width = `${progress}%`;
+                        if (progress >= 100) {
+                            clearInterval(progressInterval);
+                        }
+                    }, SLIDE_DURATION / 100);
+                }
+            };
+
             function changeSlide(direction) {
+                // Get all slides
                 const current = document.querySelector(".slide[data-current]");
                 const previous = document.querySelector(".slide[data-previous]");
                 const next = document.querySelector(".slide[data-next]");
 
+                // Remove current attributes
                 current.removeAttribute("data-current");
                 previous.removeAttribute("data-previous");
                 next.removeAttribute("data-next");
 
+                // Determine new positions based on direction
                 if (direction === 1) {
+                    // Move forward
                     current.setAttribute("data-previous", "");
                     next.setAttribute("data-current", "");
                     previous.setAttribute("data-next", "");
                 } else {
+                    // Move backward
                     current.setAttribute("data-next", "");
                     previous.setAttribute("data-current", "");
                     next.setAttribute("data-previous", "");
                 }
 
+                // Optional: Add animation class to enhance transition
                 const allSlides = document.querySelectorAll('.slide');
                 allSlides.forEach(slide => {
                     slide.style.transition = 'all 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
                 });
+
+                // Restart autoplay with new progress bar
+                startAutoplay();
             }
+
+            // Start autoplay immediately
+            startAutoplay();
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
@@ -916,23 +988,6 @@
                     changeSlide(1);
                 }
             });
-
-            let autoplayInterval;
-            const startAutoplay = () => {
-                autoplayInterval = setInterval(() => {
-                    changeSlide(1);
-                }, 5000);
-            };
-
-            const stopAutoplay = () => {
-                clearInterval(autoplayInterval);
-            };
-
-            startAutoplay();
-
-            const slider = document.querySelector('.slider');
-            slider.addEventListener('mouseenter', stopAutoplay);
-            slider.addEventListener('mouseleave', startAutoplay);
 
             let touchStartX = 0;
             let touchEndX = 0;

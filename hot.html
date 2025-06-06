@@ -67,7 +67,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(249, 244, 236, 0.95);
+            background: rgb(255, 255, 255);
             backdrop-filter: blur(20px);
             padding: 0 max(22px, env(safe-area-inset-right)) 0 max(22px, env(safe-area-inset-left));
             display: flex;
@@ -377,6 +377,22 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(214, 193, 142, 0.2);
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar__fill {
+            width: 0%;
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.1s linear;
         }
 
         .slide-info--text[data-title] {
@@ -729,7 +745,8 @@
     <nav class="navbar">
         <div style="display: flex; align-items: center;">
             <img src="image.png" alt="Holistic Booking Logo" style="height: 48px; width: auto; margin-right: 12px;">
-            <div class="logo">HOLISTIC BOOKING</div>
+            <a href="index.html" class="logo">HOLISTIC BOOKING</a>
+            
         </div>
         <div class="hamburger">
             <span></span>
@@ -769,6 +786,9 @@
                                 <div class="slide--image__wrapper">
                                     <img class="slide--image" src="https://temple.yatradham.org/public/Product/temple/temple_To4YlfIJ_202308271009080.jpg" alt="Kashi" />
                                 </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
                                         Kashi
@@ -790,6 +810,9 @@
                                 <div class="slide--image__wrapper">
                                     <img class="slide--image" src="http://www.thehistoryhub.com/wp-content/uploads/2014/04/Golden-Temple-Images.jpg" alt="Golden Temple" />
                                 </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
                                         Golden Temple
@@ -810,6 +833,9 @@
                             <div class="slide__inner">
                                 <div class="slide--image__wrapper">
                                     <img class="slide--image" src="https://tse4.mm.bing.net/th?id=OIP.xM0mE6JM1EtR2u_SdjgWywHaE0&pid=Api&P=0&h=180" alt="Tirupati" />
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
                                 </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
@@ -896,30 +922,76 @@
                 changeSlide(1);
             });
 
+            // Auto-play (optional)
+            let autoplayInterval;
+            let progressInterval;
+            const SLIDE_DURATION = 5000; // 5 seconds in milliseconds
+
+            const startAutoplay = () => {
+                // Clear any existing intervals first
+                if (autoplayInterval) {
+                    clearInterval(autoplayInterval);
+                }
+                if (progressInterval) {
+                    clearInterval(progressInterval);
+                }
+
+                // Start the slide transition interval
+                autoplayInterval = setInterval(() => {
+                    changeSlide(1);
+                }, SLIDE_DURATION);
+
+                // Start the progress bar animation
+                const progressBar = document.querySelector('.slide[data-current] .progress-bar__fill');
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                    let progress = 0;
+                    progressInterval = setInterval(() => {
+                        progress += 1;
+                        progressBar.style.width = `${progress}%`;
+                        if (progress >= 100) {
+                            clearInterval(progressInterval);
+                        }
+                    }, SLIDE_DURATION / 100);
+                }
+            };
+
             function changeSlide(direction) {
+                // Get all slides
                 const current = document.querySelector(".slide[data-current]");
                 const previous = document.querySelector(".slide[data-previous]");
                 const next = document.querySelector(".slide[data-next]");
 
+                // Remove current attributes
                 current.removeAttribute("data-current");
                 previous.removeAttribute("data-previous");
                 next.removeAttribute("data-next");
 
+                // Determine new positions based on direction
                 if (direction === 1) {
+                    // Move forward
                     current.setAttribute("data-previous", "");
                     next.setAttribute("data-current", "");
                     previous.setAttribute("data-next", "");
                 } else {
+                    // Move backward
                     current.setAttribute("data-next", "");
                     previous.setAttribute("data-current", "");
                     next.setAttribute("data-previous", "");
                 }
 
+                // Optional: Add animation class to enhance transition
                 const allSlides = document.querySelectorAll('.slide');
                 allSlides.forEach(slide => {
                     slide.style.transition = 'all 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
                 });
+
+                // Restart autoplay with new progress bar
+                startAutoplay();
             }
+
+            // Start autoplay immediately
+            startAutoplay();
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
@@ -928,23 +1000,6 @@
                     changeSlide(1);
                 }
             });
-
-            let autoplayInterval;
-            const startAutoplay = () => {
-                autoplayInterval = setInterval(() => {
-                    changeSlide(1);
-                }, 5000);
-            };
-
-            const stopAutoplay = () => {
-                clearInterval(autoplayInterval);
-            };
-
-            startAutoplay();
-
-            const slider = document.querySelector('.slider');
-            slider.addEventListener('mouseenter', stopAutoplay);
-            slider.addEventListener('mouseleave', startAutoplay);
 
             let touchStartX = 0;
             let touchEndX = 0;
