@@ -142,13 +142,254 @@
                 font-size: 1.5rem;
             }
         }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-on-scroll.fade-in-left {
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .animate-on-scroll.fade-in-right {
+            animation: fadeInRight 0.6s ease-out forwards;
+        }
+
+        .animate-on-scroll.scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(107, 80, 4, 0.1), 0 10px 10px -5px rgba(107, 80, 4, 0.04);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 100px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: rgba(107, 80, 4, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator:hover {
+            background: rgba(107, 80, 4, 0.2);
+            transform: scale(1.1);
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            color: #6B5004;
+        }
+
+        .house-section {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+
+        .house-section:hover {
+            transform: scale(1.02);
+        }
+
+        .house-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(249, 244, 236, 0.9);
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+
+        .house-section:hover .house-content {
+            background: rgba(249, 244, 236, 0.7);
+        }
+
+        .house-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .house-section:hover .house-image {
+            opacity: 1;
+        }
+
+        .house-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6B5004;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .house-description {
+            font-size: 1.1rem;
+            color: #252525;
+            text-align: center;
+            max-width: 80%;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .house-section:hover .house-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .house-link {
+            padding: 0.75rem 2rem;
+            background: #6B5004;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .house-section:hover .house-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .house-link:hover {
+            background: #252525;
+            transform: translateY(-2px);
+        }
+
+        .section-heading {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            background: #F9F4EC;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-heading h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #6B5004;
+            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        .section-heading p {
+            font-size: 1.2rem;
+            color: #252525;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav class="animate-on-scroll fade-in-up">
         <div style="display: flex; align-items: center;">
+            <a href="index.html" class="logo">
             <img src="image.png" alt="Holistic Booking Logo" style="height: 48px; width: auto; margin-right: 12px;">
+            </a>
             <a href="index.html" class="logo">HOLISTIC BOOKING</a>
             
         </div>
@@ -158,11 +399,11 @@
             <span></span>
         </div>
         <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
-            <a href="landing.html" class="booking-btn text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">Get Started</a>
+            <a href="hoh.html">Healing </a>
+            <a href="hov.html">Vedic</a>
+            <a href="#testimonials">Events</a>
+            <a href="#contact">Retreats</a>
+            <a href="hoh.html" class="booking-btn text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">BOOK NOW</a>
         </div>
     </nav>
 
@@ -170,24 +411,27 @@
     <section class="hero-pattern relative overflow-hidden bg-gradient-to-br from-[#F9F4EC] to-[#D6C18E] py-16 md:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-on-scroll fade-in-left">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#252525] leading-tight">
                         Begin Your <span class="text-[#6B5004]">Wellness</span> Journey Today
                     </h1>
                     <p class="mt-6 text-lg text-gray-600 max-w-lg">
                         Discover holistic healing practices tailored to your needs. Book sessions with experienced practitioners who will guide you on your path to wellness and self-discovery.
                     </p>
-                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                        <button class="booking-btn text-white px-8 py-3 rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1"
-                                onclick="window.location.href='landing.html'">
-                            Get Started
+                    <div class="mt-8">
+                        <div class="relative max-w-xl">
+                            <input type="text" 
+                                   placeholder="Search for healing practices, events, or retreats..." 
+                                   class="w-full px-6 py-4 rounded-lg border-2 border-[#D6C18E] focus:outline-none focus:border-[#6B5004] text-gray-700">
+                            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#6B5004] text-white p-2 rounded-md hover:bg-[#252525] transition duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
                         </button>
-                        <button class="bg-white text-[#6B5004] border border-[#D6C18E] px-8 py-3 rounded-lg text-lg font-medium shadow-md hover:shadow-lg transition duration-300 ease-in-out hover:bg-[#F9F4EC]">
-                            Learn More
-                        </button>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
+                <div class="md:w-1/2 flex justify-center animate-on-scroll fade-in-right">
                     <div class="relative w-full max-w-md">
                         
                         <!-- Main image -->
@@ -199,6 +443,13 @@
             </div>
         </div>
         
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" onclick="scrollToNextSection()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+        
         <!-- Decorative wave -->
         <div class="absolute bottom-0 left-0 right-0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" fill="#F9F4EC">
@@ -207,141 +458,325 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-[#F9F4EC]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">Our Top Services</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Experience a range of holistic healing practices designed to nurture your mind, body, and spirit.
-                </p>
+    <!-- Discover Our Houses Section -->
+    <div class="bg-[#F9F4EC] py-16 w-full">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#6B5004] mb-4 font-['Cormorant_Garamond']">Discover Our Houses</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">Step into our sacred spaces where ancient wisdom meets modern healing. Each house offers a unique journey of transformation and self-discovery.</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-8 transition duration-300 ease-in-out hover:shadow-xl">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-[#F9F4EC] rounded-lg flex items-center justify-center transform rotate-3">
-                            <svg class="w-8 h-8 text-[#6B5004]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-gray-800 ml-4">Energy Healing</h3>
+            <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- House of Healing -->
+                <div class="house-section">
+                    <div class="house-content">
+                        <h2 class="house-title">House of Healing</h2>
+                        <p class="house-description">
+                            Discover ancient healing practices and modern wellness techniques. 
+                            Experience personalized healing sessions with our expert practitioners.
+                        </p>
+                        <a href="hoh.html" class="house-link">Explore Healing</a>
                     </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Restore balance and harmony to your energy field through various healing techniques.
-                    </p>
-                    <button onclick="window.location.href='booking.html'" class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300 flex items-center group">
-                        Book Now 
-                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </button>
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" alt="House of Healing" class="house-image">
                 </div>
 
-                <!-- Service Card 2 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-8 transition duration-300 ease-in-out hover:shadow-xl">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-[#F9F4EC] rounded-lg flex items-center justify-center transform -rotate-3">
-                            <svg class="w-8 h-8 text-[#6B5004]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-gray-800 ml-4">Meditation</h3>
+                <!-- House of Vedic -->
+                <div class="house-section">
+                    <div class="house-content">
+                        <h2 class="house-title">House of Vedic</h2>
+                        <p class="house-description">
+                            Immerse yourself in the wisdom of Vedic traditions. 
+                            Learn ancient practices for spiritual growth and enlightenment.
+                        </p>
+                        <a href="hov.html" class="house-link">Discover Vedic</a>
                     </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Learn mindfulness techniques to reduce stress and enhance your overall well-being.
-                    </p>
-                    <button onclick="window.location.href='booking.html'" class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300 flex items-center group">
-                        Book Now 
-                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </button>
+                    <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5" alt="House of Vedic" class="house-image">
                 </div>
+            </section>
+        </div>
+    </div>
 
-                <!-- Service Card 3 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-8 transition duration-300 ease-in-out hover:shadow-xl">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-[#F9F4EC] rounded-lg flex items-center justify-center transform rotate-3">
-                            <svg class="w-8 h-8 text-[#6B5004]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                            </svg>
+    <!-- Recommended for You Section -->
+    <section class="py-16 bg-[#F9F4EC]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 animate-on-scroll fade-in-up">Recommended for You</h2>
+            <div class="relative">
+                <div id="recommended" class="overflow-x-auto pb-6 hide-scrollbar">
+                    <div class="flex space-x-6" style="min-width: max-content;">
+                        <!-- Card 1 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" alt="Meditation" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Guided Meditation</h3>
+                                <p class="text-gray-600 mb-4">Experience deep relaxation with our expert-guided meditation sessions.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-semibold text-gray-800 ml-4">Sound Therapy</h3>
+                        <!-- Card 2 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5" alt="Yoga" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Yoga Therapy</h3>
+                                <p class="text-gray-600 mb-4">Personalized yoga sessions for physical and mental well-being.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0" alt="Crystal Healing" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Crystal Healing</h3>
+                                <p class="text-gray-600 mb-4">Harness the power of crystals for energy balancing and healing.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773" alt="Aromatherapy" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Aromatherapy</h3>
+                                <p class="text-gray-600 mb-4">Essential oil therapy for stress relief and emotional balance.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <!-- Additional cards -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Energy Healing" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Energy Healing</h3>
+                                <p class="text-gray-600 mb-4">Restore your natural energy flow with guided healing sessions.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Sound Healing" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Sound Healing</h3>
+                                <p class="text-gray-600 mb-4">Experience the therapeutic power of sound vibrations.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Experience the healing power of sound vibrations to promote relaxation and healing.
-                    </p>
-                    <button onclick="window.location.href='booking.html'" class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300 flex items-center group">
-                        Book Now 
-                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <!-- Healing Therapies Section -->
+    <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="relative flex justify-center">
-                    <div class="w-full max-w-md">
-                        <img src="10_Personal_Boundaries.png" 
-                             alt="About Us" 
-                             class="w-full h-auto object-contain relative z-10 transform hover:scale-105 transition-transform duration-300 rounded-lg ">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 animate-on-scroll fade-in-up">Healing Therapies</h2>
+            <div class="relative">
+                <div id="healing" class="overflow-x-auto pb-6 hide-scrollbar">
+                    <div class="flex space-x-6" style="min-width: max-content;">
+                        <!-- Card 1 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef" alt="Reiki" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Reiki Healing</h3>
+                                <p class="text-gray-600 mb-4">Channel universal life force energy for physical and emotional healing.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Acupuncture" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Acupuncture</h3>
+                                <p class="text-gray-600 mb-4">Traditional Chinese medicine for pain relief and energy balance.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Sound Bath" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Sound Bath</h3>
+                                <p class="text-gray-600 mb-4">Immerse yourself in healing sound vibrations for deep relaxation.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Chakra Balancing" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Chakra Balancing</h3>
+                                <p class="text-gray-600 mb-4">Align and balance your energy centers for optimal well-being.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
+                        <!-- Additional cards -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Reflexology" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Reflexology</h3>
+                                <p class="text-gray-600 mb-4">Pressure point therapy for holistic healing and relaxation.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Cupping Therapy" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Cupping Therapy</h3>
+                                <p class="text-gray-600 mb-4">Ancient healing technique for pain relief and circulation.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About Us</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        We are dedicated to helping individuals achieve optimal health and well-being through holistic healing practices. Our team of experienced practitioners combines ancient wisdom with modern techniques to create personalized healing experiences.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-[#6B5004]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <p class="ml-3 text-gray-600">
-                                Certified practitioners with years of experience
-                            </p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-[#6B5004]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <p class="ml-3 text-gray-600">
-                                Personalized healing plans for each individual
-                            </p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <svg class="h-6 w-6 text-[#6B5004]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <p class="ml-3 text-gray-600">
-                                Safe and nurturing environment for healing
-                            </p>
-                        </div>
-                    </div>
-                    <button class="mt-8 px-6 py-3 bg-[#6B5004] text-white rounded-lg hover:bg-[#252525] transition duration-300">
-                        Learn More About Our Journey
-                    </button>
-                </div>
                 </div>
             </div>
-        </section> 
+        </div>
+    </section>
 
-   
-    
+    <!-- Spiritual Events Section -->
+    <section class="py-16 bg-[#F9F4EC]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 animate-on-scroll fade-in-up">Spiritual Events</h2>
+            <div class="relative">
+                <div id="events" class="overflow-x-auto pb-6 hide-scrollbar">
+                    <div class="flex space-x-6" style="min-width: max-content;">
+                        <!-- Card 1 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622" alt="Workshop" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Mindfulness Workshop</h3>
+                                <p class="text-gray-600 mb-4">Join our transformative workshop on mindfulness and self-awareness.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Register →</button>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Meditation Circle" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Group Meditation</h3>
+                                <p class="text-gray-600 mb-4">Experience the power of collective meditation and energy.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Join Now →</button>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Moon Ceremony" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Full Moon Ceremony</h3>
+                                <p class="text-gray-600 mb-4">Celebrate the lunar cycle with ritual and intention setting.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Register →</button>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Healing Circle" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Healing Circle</h3>
+                                <p class="text-gray-600 mb-4">Join a supportive community for shared healing and growth.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
+                        <!-- Additional cards -->
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Sound Ceremony" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Sound Ceremony</h3>
+                                <p class="text-gray-600 mb-4">Experience the healing power of sacred sound instruments.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Register →</button>
+                            </div>
+                        </div>
+                        <div class="w-80 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Spiritual Workshop" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Spiritual Workshop</h3>
+                                <p class="text-gray-600 mb-4">Deep dive into spiritual practices and self-discovery.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Join Now →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spiritual Retreats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 animate-on-scroll fade-in-up">Spiritual Retreats</h2>
+            <div class="relative">
+                <div id="retreats" class="overflow-x-auto pb-6 hide-scrollbar">
+                    <div class="flex space-x-6" style="min-width: max-content;">
+                        <!-- Card 1 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773" alt="Retreat" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-800">Weekend Wellness Retreat</h3>
+                                    <span class="bg-[#6B5004] text-white px-3 py-1 rounded-full text-sm">2D/1N</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Escape to nature for a rejuvenating weekend of healing and self-discovery.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Mountain Retreat" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-800">Mountain Meditation Retreat</h3>
+                                    <span class="bg-[#6B5004] text-white px-3 py-1 rounded-full text-sm">5D/4N</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Deep meditation practice in the serene mountain environment.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Beach Retreat" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-800">Beach Healing Retreat</h3>
+                                    <span class="bg-[#6B5004] text-white px-3 py-1 rounded-full text-sm">7D/6N</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Connect with ocean energy for deep healing and transformation.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Forest Retreat" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-800">Forest Healing Journey</h3>
+                                    <span class="bg-[#6B5004] text-white px-3 py-1 rounded-full text-sm">4D/3N</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Immerse yourself in forest therapy and nature connection.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Desert Retreat" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-800">Desert Healing Journey</h3>
+                                    <span class="bg-[#6B5004] text-white px-3 py-1 rounded-full text-sm">3D/2N</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Connect with the ancient wisdom of the desert landscape.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Learn More →</button>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="w-80 flex-shrink-0 bg-[#F9F4EC] rounded-xl shadow-md overflow-hidden animate-on-scroll scale-in">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Temple Retreat" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-800">Temple Meditation Retreat</h3>
+                                    <span class="bg-[#6B5004] text-white px-3 py-1 rounded-full text-sm">10D/9N</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">Experience deep meditation in sacred temple surroundings.</p>
+                                <button class="text-[#6B5004] font-medium hover:text-[#252525] transition duration-300">Book Now →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
 
     <!-- Footer -->
     <footer class="bg-[#252525] text-white py-12">
@@ -363,7 +798,7 @@
                         </a>
                         <a href="#" class="text-[#D6C18E] hover:text-[#F9F4EC]">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.35.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
+                                <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.353-.882-.344-1.857-.047-1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
                             </svg>
                         </a>
                         <a href="#" class="text-[#D6C18E] hover:text-[#F9F4EC]">
@@ -449,6 +884,67 @@
             e.preventDefault();
             alert('Thank you for your message! This is a demo form, so no data has been submitted.');
             contactForm.reset();
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+            observer.observe(element);
+        });
+
+        // Add stagger effect to cards
+        document.querySelectorAll('.flex.space-x-6').forEach(container => {
+            const cards = container.querySelectorAll('.animate-on-scroll');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Scroll to next section function
+        function scrollToNextSection() {
+            const heroSection = document.querySelector('.hero-pattern');
+            const nextSection = heroSection.nextElementSibling;
+            
+            if (nextSection) {
+                window.scrollTo({
+                    top: nextSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Hide scroll indicator when reaching footer
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const footer = document.querySelector('footer');
+            
+            if (footer) {
+                const footerPosition = footer.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (footerPosition <= windowHeight) {
+                    scrollIndicator.style.opacity = '0';
+                    scrollIndicator.style.visibility = 'hidden';
+                } else {
+                    scrollIndicator.style.opacity = '1';
+                    scrollIndicator.style.visibility = 'visible';
+                }
+            }
         });
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'937fa52546c34055',t:'MTc0NTkzODU3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
