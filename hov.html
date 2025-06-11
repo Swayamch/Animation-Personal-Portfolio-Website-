@@ -404,11 +404,13 @@
         }
 
         .slider--btn__prev {
-            left: 15px;
+            left: 5px;
+            z-index: 20;
         }
 
         .slider--btn__next {
-            right: 15px;
+            right: 5px;
+            z-index: 20;
         }
 
         .slides__wrapper {
@@ -441,6 +443,7 @@
             width: 100%;
             max-width: 800px;
             pointer-events: none;
+            visibility: hidden;
         }
 
         .slide[data-current] {
@@ -448,6 +451,7 @@
             transform: scale(1);
             z-index: 5;
             pointer-events: all;
+            visibility: visible;
         }
 
         .slide[data-previous], .slide[data-next] {
@@ -455,6 +459,7 @@
             transform: scale(0.85);
             z-index: 1;
             pointer-events: none;
+            visibility: visible;
         }
 
         .slide[data-previous] {
@@ -496,10 +501,6 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.8s ease;
-        }
-
-        .slide[data-current] .slide__inner:hover .slide--image {
-            transform: scale(1.05);
         }
 
         .slide-info--text__wrapper {
@@ -822,6 +823,10 @@
         .booking-btn:hover {
             background: linear-gradient(135deg, #6B5004 0%, #252525 100%);
         }
+
+        .slide[data-current] .slide__inner:hover .slide--image {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -898,48 +903,120 @@
                             </div>
                         </div>
 
-                        <!-- Slide 2 -->
+                        <!-- Slide 2 - Astrology -->
                         <div class="slide" data-next>
                             <div class="slide__inner">
                                 <div class="slide--image__wrapper">
-                                    <img class="slide--image" src="https://cdn.pixabay.com/photo/2023/08/29/18/43/ai-generated-8221963_1280.png" alt="Ayurvedic Consultation" />
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1515894203077-9cd36032142f" alt="Vedic Astrology" />
                                 </div>
                                 <div class="progress-bar">
                                     <div class="progress-bar__fill"></div>
                                 </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
-                                        Ayurvedic Consultation
+                                        Vedic Astrology
                                     </div>
                                     <div data-subtitle class="slide-info--text">
-                                        Personalized Wellness
+                                        Celestial Guidance
                                     </div>
                                     <div data-description class="slide-info--text">
-                                        Receive personalized Ayurvedic consultations to understand your unique constitution and get tailored recommendations for diet, lifestyle, and healing practices.
+                                        Discover your life path through ancient Vedic astrology. Get personalized insights based on your birth chart and planetary positions.
                                     </div>
                                     <a href="booking.html" class="service-btn">Book Now</a>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Slide 3 -->
-                        <div class="slide" data-previous>
+                        <!-- Slide 3 - Numerology -->
+                        <div class="slide">
                             <div class="slide__inner">
                                 <div class="slide--image__wrapper">
-                                    <img class="slide--image" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Yoga Therapy" />
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1509228468518-180dd4864904" alt="Numerology" />
                                 </div>
                                 <div class="progress-bar">
                                     <div class="progress-bar__fill"></div>
                                 </div>
                                 <div class="slide-info--text__wrapper">
                                     <div data-title class="slide-info--text">
-                                        Yoga Therapy
+                                        Vedic Numerology
                                     </div>
                                     <div data-subtitle class="slide-info--text">
-                                        Mind-Body Integration
+                                        Sacred Numbers
                                     </div>
                                     <div data-description class="slide-info--text">
-                                        Experience therapeutic yoga sessions that combine traditional asanas, pranayama, and meditation to address specific health concerns and promote overall well-being.
+                                        Unlock the mystical significance of numbers in your life. Understand your destiny number, life path, and personal year cycles.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 - Vastu -->
+                        <div class="slide">
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vastu Shastra" />
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Vastu Consultation
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Sacred Architecture
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Harmonize your living and working spaces with Vastu Shastra principles. Create balance and positive energy flow in your environment.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 - Reiki -->
+                        <div class="slide">
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" alt="Reiki Healing" />
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Reiki Healing
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Energy Healing
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Experience the gentle power of Reiki energy healing. Balance your chakras and restore your body's natural healing abilities.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 6 - Tarot -->
+                        <div class="slide" data-previous>
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d" alt="Tarot Reading" />
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Tarot Reading
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Divine Guidance
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Gain clarity and insight through traditional tarot readings. Navigate life's challenges with spiritual guidance and wisdom.
                                     </div>
                                     <a href="booking.html" class="service-btn">Book Now</a>
                                 </div>
@@ -1211,6 +1288,45 @@
             let progressInterval;
             const SLIDE_DURATION = 5000; // 5 seconds in milliseconds
 
+            function changeSlide(direction) {
+                // Get all slides
+                const slides = document.querySelectorAll(".slide");
+                const current = document.querySelector(".slide[data-current]");
+                const previous = document.querySelector(".slide[data-previous]");
+                const next = document.querySelector(".slide[data-next]");
+                
+                // Find indices of current slides
+                let currentIndex = Array.from(slides).indexOf(current);
+                let previousIndex = Array.from(slides).indexOf(previous);
+                let nextIndex = Array.from(slides).indexOf(next);
+                
+                // Remove current attributes
+                current.removeAttribute("data-current");
+                previous.removeAttribute("data-previous");
+                next.removeAttribute("data-next");
+                
+                // Calculate new indices based on direction
+                if (direction === 1) {
+                    // Moving forward
+                    currentIndex = nextIndex;
+                    previousIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+                    nextIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+                } else {
+                    // Moving backward
+                    currentIndex = previousIndex;
+                    nextIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+                    previousIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+                }
+                
+                // Apply new attributes
+                slides[currentIndex].setAttribute("data-current", "");
+                slides[previousIndex].setAttribute("data-previous", "");
+                slides[nextIndex].setAttribute("data-next", "");
+                
+                // Restart progress bar
+                startAutoplay();
+            }
+            
             const startAutoplay = () => {
                 // Clear any existing intervals first
                 if (autoplayInterval) {
@@ -1240,42 +1356,31 @@
                 }
             };
 
-            function changeSlide(direction) {
-                // Get all slides
-                const current = document.querySelector(".slide[data-current]");
-                const previous = document.querySelector(".slide[data-previous]");
-                const next = document.querySelector(".slide[data-next]");
-
-                // Remove current attributes
-                current.removeAttribute("data-current");
-                previous.removeAttribute("data-previous");
-                next.removeAttribute("data-next");
-
-                // Determine new positions based on direction
-                if (direction === 1) {
-                    // Move forward
-                    current.setAttribute("data-previous", "");
-                    next.setAttribute("data-current", "");
-                    previous.setAttribute("data-next", "");
-                } else {
-                    // Move backward
-                    current.setAttribute("data-next", "");
-                    previous.setAttribute("data-current", "");
-                    next.setAttribute("data-previous", "");
-                }
-
-                // Optional: Add animation class to enhance transition
-                const allSlides = document.querySelectorAll('.slide');
-                allSlides.forEach(slide => {
-                    slide.style.transition = 'all 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
+            // Set initial slide positions
+            function initializeSlides() {
+                const slides = document.querySelectorAll('.slide');
+                // Remove any existing attributes
+                slides.forEach(slide => {
+                    slide.removeAttribute('data-current');
+                    slide.removeAttribute('data-previous');
+                    slide.removeAttribute('data-next');
                 });
-
-                // Restart autoplay with new progress bar
-                startAutoplay();
+                
+                // Set initial positions
+                slides[0].setAttribute('data-current', '');
+                slides[slides.length - 1].setAttribute('data-previous', '');
+                slides[1].setAttribute('data-next', '');
             }
 
-            // Start autoplay immediately
+            // Initialize and start autoplay
+            initializeSlides();
             startAutoplay();
+
+            // Make sure all slides are visible
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.style.opacity = '1';
+                slide.style.visibility = 'visible';
+            });
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
