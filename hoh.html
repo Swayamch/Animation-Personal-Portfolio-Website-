@@ -1050,6 +1050,54 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Slide 4 - Ayurvedic -->
+                        <div class="slide">
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1616198814651-e71f960c3180" alt="Ayurvedic Treatment" />
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Ayurvedic Treatment
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Ancient Healing Science
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Discover personalized Ayurvedic treatments based on your unique dosha balance. Experience traditional therapies that promote detoxification, rejuvenation, and holistic wellness.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 - Yoga Therapy -->
+                        <div class="slide">
+                            <div class="slide__inner">
+                                <div class="slide--image__wrapper">
+                                    <img class="slide--image" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0" alt="Yoga Therapy" />
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar__fill"></div>
+                                </div>
+                                <div class="slide-info--text__wrapper">
+                                    <div data-title class="slide-info--text">
+                                        Yoga Therapy
+                                    </div>
+                                    <div data-subtitle class="slide-info--text">
+                                        Mind-Body Integration
+                                    </div>
+                                    <div data-description class="slide-info--text">
+                                        Experience therapeutic yoga sessions tailored to your specific health needs. Our holistic approach combines traditional asanas, pranayama, and meditation to address physical and emotional wellness.
+                                    </div>
+                                    <a href="booking.html" class="service-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1322,27 +1370,38 @@
 
             function changeSlide(direction) {
                 // Get all slides
+                const slides = document.querySelectorAll(".slide");
                 const current = document.querySelector(".slide[data-current]");
                 const previous = document.querySelector(".slide[data-previous]");
                 const next = document.querySelector(".slide[data-next]");
-
+                
+                // Find indices of current slides
+                let currentIndex = Array.from(slides).indexOf(current);
+                let previousIndex = Array.from(slides).indexOf(previous);
+                let nextIndex = Array.from(slides).indexOf(next);
+                
                 // Remove current attributes
                 current.removeAttribute("data-current");
                 previous.removeAttribute("data-previous");
                 next.removeAttribute("data-next");
-
-                // Determine new positions based on direction
+                
+                // Calculate new indices based on direction
                 if (direction === 1) {
-                    // Move forward
-                    current.setAttribute("data-previous", "");
-                    next.setAttribute("data-current", "");
-                    previous.setAttribute("data-next", "");
+                    // Moving forward
+                    currentIndex = nextIndex;
+                    previousIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+                    nextIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
                 } else {
-                    // Move backward
-                    current.setAttribute("data-next", "");
-                    previous.setAttribute("data-current", "");
-                    next.setAttribute("data-previous", "");
+                    // Moving backward
+                    currentIndex = previousIndex;
+                    nextIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+                    previousIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
                 }
+                
+                // Apply new attributes
+                slides[currentIndex].setAttribute("data-current", "");
+                slides[previousIndex].setAttribute("data-previous", "");
+                slides[nextIndex].setAttribute("data-next", "");
 
                 // Optional: Add animation class to enhance transition
                 const allSlides = document.querySelectorAll('.slide');
